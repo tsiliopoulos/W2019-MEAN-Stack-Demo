@@ -4,10 +4,15 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let cors = require('cors');
 
 // modules for authentication
 let session = require('express-session');
 let passport = require('passport');
+let passportJWT = require("passport-jwt");
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
+
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
@@ -41,6 +46,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+app.use(cors());
 
 // setup express-session
 app.use(session({
@@ -56,6 +62,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // pasport user configuration
 
 // create a User model
@@ -69,9 +76,25 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//This verifies that the token sent by the user is valid
+var jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = DB.secret;
+
+var strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
+  User.findById(jwt_payload.id)
+  .then(user => {
+    return done(null, user);
+  })
+  .catch(err => {
+      return done(err, false);
+  });
+});
+
+passport.use(strategy);
 
 app.use('/', indexRouter);
-app.use('/contact-list', contactRouter);
+app.use('/contact-list', passport.authenticate('jwt', {session: false}), contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
