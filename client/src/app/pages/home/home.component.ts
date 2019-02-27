@@ -14,6 +14,7 @@ export class HomeComponent extends BasePageComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }

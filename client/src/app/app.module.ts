@@ -20,12 +20,16 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
-// Services
-import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
-import { ValidationService } from './services/validation.service';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailsComponent } from './contacts/contact-list/contact-details/contact-details.component';
 import { DeleteContactComponent } from './contacts/contact-list/delete-contact/delete-contact.component';
+
+// Services
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
+import { ValidationService } from './services/validation.service';
+import { AuthService } from './services/auth.service';
+import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
+
 
 
 
@@ -52,7 +56,14 @@ import { DeleteContactComponent } from './contacts/contact-list/delete-contact/d
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('id_token');
+        }
+      }
+    })
   ],
   providers: [ValidationService, FlashMessagesService],
   bootstrap: [AppComponent]

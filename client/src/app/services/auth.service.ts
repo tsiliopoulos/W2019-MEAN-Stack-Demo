@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { User } from '../models/user';
 
@@ -19,7 +20,10 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private jwtService: JwtHelperService
+    ) {
     this.user = new User();
   }
 
@@ -44,6 +48,10 @@ export class AuthService {
     localStorage.clear();
 
     return this.http.get<any>(this.endpoint + 'logout', this.httpOptions);
+  }
+
+  public LoggedIn(): boolean {
+    return this.jwtService.isTokenExpired(this.authToken);
   }
 
 
