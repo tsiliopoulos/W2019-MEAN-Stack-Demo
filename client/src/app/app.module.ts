@@ -31,7 +31,9 @@ import { AuthService } from './services/auth.service';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 
 
-
+export function jwtTokenGetter() {
+    return localStorage.getItem('id_token');
+}
 
 @NgModule({
   declarations: [
@@ -59,9 +61,7 @@ import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt'
     FlashMessagesModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('id_token');
-        }
+        tokenGetter: jwtTokenGetter
       }
     })
   ],
