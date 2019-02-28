@@ -13,7 +13,7 @@ export class ContactListService {
   private authToken: any = null;
 
   //private endpoint = 'http://localhost:3000/contact-list/';
-  private endpoint = 'contact-list/';
+  private endpoint = 'api/contact-list/';
 
   private httpOptions = {
     headers: new HttpHeaders({
