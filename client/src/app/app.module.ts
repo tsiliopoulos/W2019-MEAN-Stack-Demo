@@ -29,6 +29,7 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
 import { ValidationService } from './services/validation.service';
 import { AuthService } from './services/auth.service';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
+import { AuthGuard } from './guards/auth.guard';
 
 
 export function jwtTokenGetter() {
@@ -65,7 +66,7 @@ export function jwtTokenGetter() {
       }
     })
   ],
-  providers: [ValidationService, FlashMessagesService],
+  providers: [ValidationService, FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

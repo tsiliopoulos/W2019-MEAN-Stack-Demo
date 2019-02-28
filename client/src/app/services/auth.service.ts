@@ -12,7 +12,8 @@ export class AuthService {
   private user: User;
   private authToken: any;
 
-  private endpoint = 'http://localhost:3000/';
+  //private endpoint = 'http://localhost:3000/';
+  private endpoint  = '';
 
   private httpOptions = {
     headers: new HttpHeaders({
