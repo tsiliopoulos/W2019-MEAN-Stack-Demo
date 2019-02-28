@@ -5,7 +5,8 @@
             <a class="btn btn-primary" routerLink="add" role="button">
             <i class="fas fa-plus-circle"></i> Add a Contact</a>
             <br>
-            <table class="table table-bordered table-striped table-hover">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
                 <!-- Header Row-->
                 <tr>
                     <th scope="col" class="text-center" sortable="firstName" (sort)="onSort($event)">First Name</th>
@@ -33,6 +34,8 @@
                     </tr>
 
             </table>
+            </div>
+
             <div class="d-flex justify-content-between p-2">
               <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
 
