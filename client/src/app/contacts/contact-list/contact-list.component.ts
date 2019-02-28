@@ -7,9 +7,6 @@ import { ContactListService } from 'src/app/services/contact-list.service';
 import { Contact } from 'src/app/models/contact';
 import { Router } from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
@@ -31,7 +28,6 @@ export class ContactListComponent implements OnInit {
   }
 
   private displayContactList(): void {
-    console.log("Is User logged in?: " + this.authService.LoggedIn());
     this.contactListService.getList().subscribe(data => {
       if (data.success) {
         this.contacts = data.contactList;

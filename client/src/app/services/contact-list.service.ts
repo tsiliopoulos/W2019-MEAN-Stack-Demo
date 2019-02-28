@@ -27,7 +27,6 @@ export class ContactListService {
   public getList(): Observable<any> {
     this.loadToken();
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
-    console.log(this.httpOptions);
     return this.http.get<any>(this.endpoint, this.httpOptions);
   }
 

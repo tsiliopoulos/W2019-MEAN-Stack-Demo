@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   public LoggedIn(): boolean {
-    return this.jwtService.isTokenExpired(this.authToken);
+    return !this.jwtService.isTokenExpired(this.authToken);
   }
 
 

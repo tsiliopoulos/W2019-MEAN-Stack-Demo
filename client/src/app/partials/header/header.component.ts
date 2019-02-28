@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private flashMessage: FlashMessagesService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/login']);
     });
     return false;
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.LoggedIn();
   }
 
 }
