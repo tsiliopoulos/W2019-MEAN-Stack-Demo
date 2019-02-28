@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { User } from 'src/app/models/user';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   onLogoutClick() {

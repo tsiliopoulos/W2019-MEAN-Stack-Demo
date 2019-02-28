@@ -9,7 +9,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private user: User;
+  public user: User;
   private authToken: any;
 
   //private endpoint = 'http://localhost:3000/api/';
@@ -29,7 +29,7 @@ export class AuthService {
     private jwtService: JwtHelperService
     ) {
     this.user = new User();
-  }
+    }
 
   public registerUser(user: User): Observable<any> {
     return this.http.post<any>(this.endpoint + 'register', user, this.httpOptions);

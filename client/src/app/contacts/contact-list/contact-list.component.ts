@@ -92,7 +92,7 @@ export class ContactListComponent implements OnInit {
     this.contacts = this.sortContacts(this.contacts, this.sortColumn, this.sortDirection);
   }
 
-  private compare(v1, v2): number {
+  private compare(v1: string, v2: string): number {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
 
