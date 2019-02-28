@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
@@ -64,7 +65,8 @@ export function jwtTokenGetter() {
       config: {
         tokenGetter: jwtTokenGetter
       }
-    })
+    }),
+    NgbModule
   ],
   providers: [ValidationService, FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]

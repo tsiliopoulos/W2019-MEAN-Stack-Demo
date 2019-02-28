@@ -16,7 +16,7 @@
                 </tr>
 
                 <!-- Repeatable Template Row -->
-                    <tr *ngFor="let contact of contacts">
+                    <tr *ngFor="let contact of contacts | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                         <td class="text-center">{{contact.firstName }}</td>
                         <td class="text-center">{{contact.lastName }}</td>
                         <td class="text-center">{{contact.age }}</td>
@@ -31,8 +31,20 @@
                               class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
                     </tr>
-            </table>
 
+            </table>
+            <div class="d-flex justify-content-between p-2">
+              <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+              </ngb-pagination>
+
+              <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                <option [ngValue]="3" selected>3 Items per page</option>
+                <option [ngValue]="5">5 Items per page</option>
+                <option [ngValue]="10">10 Items per page</option>
+                <option [ngValue]="1000">Display All items</option>
+              </select>
+            </div>
+            <hr>
         </div>
     </div>
 </div>

@@ -15,6 +15,10 @@ import { Router } from '@angular/router';
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
 
+  page: number;
+  pageSize: number;
+  collectionSize: number;
+
   constructor(
     private contactListService: ContactListService,
     private flashMessage: FlashMessagesService,
@@ -23,7 +27,8 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contacts = new Array<Contact>();
-
+    this.page = 1;
+    this.pageSize = 3;
     this.displayContactList();
   }
 
@@ -31,6 +36,7 @@ export class ContactListComponent implements OnInit {
     this.contactListService.getList().subscribe(data => {
       if (data.success) {
         this.contacts = data.contactList;
+        this.collectionSize = this.contacts.length;
       } else {
         this.flashMessage.show('User must be logged-in', {cssClass: 'alert-danger', timeOut: 3000});
       }
