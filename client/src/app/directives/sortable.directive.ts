@@ -28,19 +28,4 @@ export class NgbdSortableHeaderDirective {
     this.direction = rotate[this.direction];
     this.sort.emit({column: this.sortable, direction: this.direction});
   }
-
-  compare(v1, v2): number {
-    return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
-  }
-
-  collectionSort(collection: any[], column: string, direction: string): any[] {
-    if (direction === '') {
-      return collection;
-    } else {
-      return [...collection].sort((a, b) => {
-        const res = this.compare(a[column], b[column]);
-        return direction === 'asc' ? res : -res;
-      });
-    }
-  }
 }
