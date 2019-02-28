@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FlashMessagesService } from 'angular2-flash-messages'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,6 @@ import { FlashMessagesService } from 'angular2-flash-messages'
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'client';
+  title = 'W2019-MEAN-Stack-Demo';
+
 }

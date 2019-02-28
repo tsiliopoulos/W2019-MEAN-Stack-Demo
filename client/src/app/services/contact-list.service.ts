@@ -12,12 +12,15 @@ export class ContactListService {
   private user: User;
   private authToken: any = null;
 
-  //private endpoint = 'http://localhost:3000/contact-list/';
-  private endpoint = 'api/contact-list/';
+  //private endpoint = 'http://localhost:3000/api/contact-list/';
+  //private endpoint = 'api/contact-list/';
+  private endpoint = 'https://w2019-mean-stack-demo.herokuapp.com/api/contact-list/';
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     })
   };
 
@@ -40,6 +43,7 @@ export class ContactListService {
   }
 
   public editContact(contact: Contact): Observable<any> {
+    console.log(this.endpoint + 'edit/' + contact._id);
     return this.http.post<any>(this.endpoint + 'edit/' + contact._id, contact, this.httpOptions);
   }
 

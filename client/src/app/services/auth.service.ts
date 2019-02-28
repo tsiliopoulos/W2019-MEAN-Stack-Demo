@@ -12,12 +12,15 @@ export class AuthService {
   private user: User;
   private authToken: any;
 
-  //private endpoint = 'http://localhost:3000/';
-  private endpoint  = 'api/';
+  //private endpoint = 'http://localhost:3000/api/';
+  //private endpoint  = 'api/';
+  private endpoint = 'https://w2019-mean-stack-demo.herokuapp.com/api/';
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
     })
   };
 
