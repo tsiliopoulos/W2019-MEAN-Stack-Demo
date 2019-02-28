@@ -94,7 +94,8 @@ var strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 passport.use(strategy);
 
 app.use('/api', indexRouter);
-app.use('/api/contact-list', passport.authenticate('jwt', {session: false}), contactRouter);
+//app.use('/api/contact-list', passport.authenticate('jwt', {session: false}), contactRouter);
+app.use('/api/contact-list', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
