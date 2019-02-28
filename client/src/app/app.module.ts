@@ -32,6 +32,9 @@ import { AuthService } from './services/auth.service';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
 
+// Directives
+import { NgbdSortableHeaderDirective } from './directives/sortable.directive';
+
 
 export function jwtTokenGetter() {
     return localStorage.getItem('id_token');
@@ -53,7 +56,8 @@ export function jwtTokenGetter() {
     RegisterComponent,
     ContactListComponent,
     ContactDetailsComponent,
-    DeleteContactComponent
+    DeleteContactComponent,
+    NgbdSortableHeaderDirective
   ],
   imports: [
     BrowserModule,

@@ -8,11 +8,11 @@
             <table class="table table-bordered table-striped table-hover">
                 <!-- Header Row-->
                 <tr>
-                    <th class="text-center">First Name</th>
-                    <th class="text-center">Last Name</th>
-                    <th class="text-center">Age</th>
-                    <th class="text-center"></th>
-                    <th class="text-center"></th>
+                    <th scope="col" class="text-center" sortable="firstName" (sort)="onSort($event)">First Name</th>
+                    <th scope="col" class="text-center" sortable="lastName" (sort)="onSort($event)">Last Name</th>
+                    <th scope="col" class="text-center" sortable="age" (sort)="onSort($event)">Age</th>
+                    <th scope="col" class="text-center"></th>
+                    <th scope="col" class="text-center"></th>
                 </tr>
 
                 <!-- Repeatable Template Row -->
@@ -34,8 +34,7 @@
 
             </table>
             <div class="d-flex justify-content-between p-2">
-              <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-              </ngb-pagination>
+              <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
 
               <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
                 <option [ngValue]="3" selected>3 Items per page</option>
